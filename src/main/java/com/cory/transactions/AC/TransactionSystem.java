@@ -39,26 +39,4 @@ public class TransactionSystem implements ITransactionSystem {
 
     }
 
-    public List<TransactionDto> ListTransactionsByType(String transactionType) throws IOException {
-
-        List<TransactionDto> transactionDtoList = ListAllTransactions();
-
-        return transactionDtoList.stream()
-                        .filter(tx -> tx.getTransactionType().equals(transactionType))
-                        .collect(Collectors.toList());
-
-    }
-
-    @Override
-    public Double GetTotalByTransactionType(String transactionType) throws IOException {
-
-        // Would normally consider consider MonetaryAmount and checking currency type consistency.
-        // Perhaps goes beyond the scope of this test.
-
-        List<TransactionDto> transactionDtoList = ListTransactionsByType(transactionType);
-
-        return transactionDtoList.stream().mapToDouble(TransactionDto::getTransactionAmount).sum();
-
-    }
-
 }

@@ -3,6 +3,7 @@ package com.cory.transactions.Web;
 import com.cory.transactions.AC.ITransactionSystem;
 import com.cory.transactions.AC.contracts.OpenBankTransactionDto;
 import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.Services.ITransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,34 +19,34 @@ import java.util.logging.Logger;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    final ITransactionSystem transactionSystem;
+    final ITransactionService transactionService;
     private static final Logger logger = Logger.getLogger(TransactionController.class.getName());
 
     @Autowired
-    public TransactionController(ITransactionSystem transactionSystem) {
+    public TransactionController(ITransactionService transactionService) {
 
-        this.transactionSystem = transactionSystem;
+        this.transactionService = transactionService;
 
     }
 
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TransactionDto> ListAllTransactions() throws IOException {
 
-        return transactionSystem.ListAllTransactions();
+        return transactionService.ListAllTransactions();
 
     }
 
     @GetMapping(value = "/type/{transactionType}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TransactionDto> ListTransactionsByType(@PathVariable String transactionType) throws IOException {
+    public List<TransactionDto> ListTransactionsByType(@PathVariable String transactionType) throws Exception {
 
-        return transactionSystem.ListTransactionsByType(transactionType);
+        return transactionService.ListTransactionsByType(transactionType);
 
     }
 
     @GetMapping(value = "/type/{transactionType}/total", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Double GetTotalByTransactionType(@PathVariable String transactionType) throws IOException {
+    public Double GetTotalByTransactionType(@PathVariable String transactionType) throws Exception {
 
-        return transactionSystem.GetTotalByTransactionType(transactionType);
+        return transactionService.GetTotalByTransactionType(transactionType);
 
     }
 

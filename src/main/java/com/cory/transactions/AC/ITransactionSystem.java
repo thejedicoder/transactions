@@ -10,7 +10,4 @@ public interface ITransactionSystem {
 
     List<TransactionDto> ListAllTransactions() throws IOException;
 
-    List<TransactionDto> ListTransactionsByType(String transactionType) throws IOException;
-
-    Double GetTotalByTransactionType(String transactionType) throws IOException;
 }
