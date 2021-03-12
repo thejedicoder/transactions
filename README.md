@@ -16,5 +16,7 @@ First, ensure Tomcat is not running in your IDE and not started manually.
 
 ## API Methods
 http://localhost:8080/transactions-1.0-SNAPSHOT/transactions
+
 http://localhost:8080/transactions-1.0-SNAPSHOT/transactions/type/SEPA
+
 http://localhost:8080/transactions-1.0-SNAPSHOT/transactions/type/SEPA/total
