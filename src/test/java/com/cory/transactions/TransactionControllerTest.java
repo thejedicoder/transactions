@@ -15,6 +15,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit test class for the TransactionController
+ */
 public class TransactionControllerTest {
 
     @Mock
@@ -110,7 +113,10 @@ public class TransactionControllerTest {
 
     }
 
-
+    /**
+     * Creates DTO data for unit testing purposes.
+     * @return Non-null List of TransactionDto
+     */
     private List<TransactionDto> GenerateTestTransactions() {
 
         List<TransactionDto> dtoList = new ArrayList<>();

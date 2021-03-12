@@ -13,17 +13,24 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class TransactionSystem implements ITransactionSystem {
 
-
+    /**
+     * {@inheritDoc}
+     */
     public List<TransactionDto> ListAllTransactions() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault())  {
 
-            HttpGet request = new HttpGet("https://apisandbox.openbankproject.com/obp/v1.2.1/banks/rbs/accounts/savings-kids-john/public/transactions");
+            String transactionUrl =
+                    "https://apisandbox.openbankproject.com/obp/v1.2.1/banks/rbs/accounts/savings-kids-john/public/transactions";
+            HttpGet request = new HttpGet(transactionUrl);
 
             OpenBankTransactionShellDto transactionDto =
                     httpClient.execute(request,

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class TransactionService implements ITransactionService {
 
@@ -21,13 +24,18 @@ public class TransactionService implements ITransactionService {
 
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public List<TransactionDto> ListAllTransactions() throws IOException {
 
         return transactionSystem.ListAllTransactions();
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public List<TransactionDto> ListTransactionsByType(String transactionType) throws Exception {
 
         Verify.NotEmpty(transactionType, "transactionType");
@@ -40,6 +48,9 @@ public class TransactionService implements ITransactionService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Double GetTotalByTransactionType(String transactionType) throws Exception {
 
