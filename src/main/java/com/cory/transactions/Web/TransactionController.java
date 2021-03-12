@@ -4,6 +4,7 @@ import com.cory.transactions.AC.ITransactionSystem;
 import com.cory.transactions.AC.contracts.OpenBankTransactionDto;
 import com.cory.transactions.Domain.TransactionDto;
 import com.cory.transactions.Services.ITransactionService;
+import com.cory.transactions.Services.Verify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,12 +40,16 @@ public class TransactionController {
     @GetMapping(value = "/type/{transactionType}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TransactionDto> ListTransactionsByType(@PathVariable String transactionType) throws Exception {
 
+        Verify.NotEmpty(transactionType, "transactionType");
+
         return transactionService.ListTransactionsByType(transactionType);
 
     }
 
     @GetMapping(value = "/type/{transactionType}/total", produces = MediaType.APPLICATION_JSON_VALUE)
     public Double GetTotalByTransactionType(@PathVariable String transactionType) throws Exception {
+
+        Verify.NotEmpty(transactionType, "transactionType");
 
         return transactionService.GetTotalByTransactionType(transactionType);
 

@@ -20,11 +20,11 @@ public class TransactionServiceTest {
     @Mock
     TransactionSystem transactionSystem;
 
-    //@InjectMocks
     private TransactionService transactionService;
 
     @BeforeEach
     public void setup() {
+
         transactionSystem = mock(TransactionSystem.class);
         transactionService = new TransactionService(transactionSystem);
 
