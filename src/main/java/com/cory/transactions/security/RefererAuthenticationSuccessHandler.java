@@ -1,4 +1,4 @@
-package com.cory.transactions.Security;
+package com.cory.transactions.security;
 
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;

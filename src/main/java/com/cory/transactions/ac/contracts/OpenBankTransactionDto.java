@@ -1,6 +1,6 @@
-package com.cory.transactions.AC.contracts;
+package com.cory.transactions.ac.contracts;
 
-import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.domain.TransactionDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**

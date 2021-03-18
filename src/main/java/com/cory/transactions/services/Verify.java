@@ -1,4 +1,4 @@
-package com.cory.transactions.Services;
+package com.cory.transactions.services;
 
 /**
  * Provides verification helper methods to ensure non-null and non-empty values when needed

@@ -1,8 +1,8 @@
 package com.cory.transactions;
 
-import com.cory.transactions.AC.TransactionSystem;
-import com.cory.transactions.Domain.TransactionDto;
-import com.cory.transactions.Services.TransactionService;
+import com.cory.transactions.ac.TransactionSystem;
+import com.cory.transactions.domain.TransactionDto;
+import com.cory.transactions.services.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

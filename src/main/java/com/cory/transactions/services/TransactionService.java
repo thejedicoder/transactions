@@ -1,7 +1,7 @@
-package com.cory.transactions.Services;
+package com.cory.transactions.services;
 
-import com.cory.transactions.AC.ITransactionSystem;
-import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.ac.ITransactionSystem;
+import com.cory.transactions.domain.TransactionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

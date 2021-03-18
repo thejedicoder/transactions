@@ -1,7 +1,7 @@
 package com.cory.transactions;
 
-import com.cory.transactions.AC.contracts.*;
-import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.ac.contracts.*;
+import com.cory.transactions.domain.TransactionDto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

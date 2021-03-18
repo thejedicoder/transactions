@@ -1,4 +1,4 @@
-package com.cory.transactions.AC.contracts;
+package com.cory.transactions.ac.contracts;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

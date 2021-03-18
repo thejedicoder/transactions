@@ -1,4 +1,4 @@
-package com.cory.transactions.Web;
+package com.cory.transactions.web;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;

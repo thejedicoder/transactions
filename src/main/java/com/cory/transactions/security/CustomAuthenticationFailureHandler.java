@@ -1,4 +1,4 @@
-package com.cory.transactions.Security;
+package com.cory.transactions.security;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;

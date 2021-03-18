@@ -1,6 +1,6 @@
-package com.cory.transactions.Services;
+package com.cory.transactions.services;
 
-import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.domain.TransactionDto;
 
 import java.io.IOException;
 import java.util.List;

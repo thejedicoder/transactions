@@ -1,4 +1,4 @@
-package com.cory.transactions.Web;
+package com.cory.transactions.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

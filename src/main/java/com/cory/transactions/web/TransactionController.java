@@ -1,10 +1,8 @@
-package com.cory.transactions.Web;
+package com.cory.transactions.web;
 
-import com.cory.transactions.AC.ITransactionSystem;
-import com.cory.transactions.AC.contracts.OpenBankTransactionDto;
-import com.cory.transactions.Domain.TransactionDto;
-import com.cory.transactions.Services.ITransactionService;
-import com.cory.transactions.Services.Verify;
+import com.cory.transactions.domain.TransactionDto;
+import com.cory.transactions.services.ITransactionService;
+import com.cory.transactions.services.Verify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

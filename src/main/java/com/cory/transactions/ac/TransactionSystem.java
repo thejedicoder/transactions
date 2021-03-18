@@ -1,8 +1,8 @@
-package com.cory.transactions.AC;
+package com.cory.transactions.ac;
 
-import com.cory.transactions.AC.contracts.OpenBankTransactionDto;
-import com.cory.transactions.AC.contracts.OpenBankTransactionShellDto;
-import com.cory.transactions.Domain.TransactionDto;
+import com.cory.transactions.ac.contracts.OpenBankTransactionDto;
+import com.cory.transactions.ac.contracts.OpenBankTransactionShellDto;
+import com.cory.transactions.domain.TransactionDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;

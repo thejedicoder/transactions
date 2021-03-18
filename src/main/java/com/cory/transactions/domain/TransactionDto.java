@@ -1,4 +1,4 @@
-package com.cory.transactions.Domain;
+package com.cory.transactions.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

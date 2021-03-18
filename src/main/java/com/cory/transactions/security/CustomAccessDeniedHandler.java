@@ -1,4 +1,4 @@
-package com.cory.transactions.Security;
+package com.cory.transactions.security;
 
 import java.util.logging.Logger;
 import org.springframework.security.access.AccessDeniedException;
