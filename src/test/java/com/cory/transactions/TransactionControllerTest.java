@@ -1,7 +1,7 @@
 package com.cory.transactions;
 
 import com.cory.transactions.domain.TransactionDto;
-import com.cory.transactions.services.TransactionService;
+import com.cory.transactions.services.TransactionServiceImpl;
 import com.cory.transactions.web.TransactionController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ import static org.mockito.Mockito.*;
 public class TransactionControllerTest {
 
     @Mock
-    TransactionService transactionService;
+    TransactionServiceImpl transactionService;
 
     private TransactionController transactionController;
 
     @BeforeEach
     public void setup() {
 
-        transactionService = mock(TransactionService.class);
+        transactionService = mock(TransactionServiceImpl.class);
         transactionController = new TransactionController(transactionService);
 
     }
@@ -36,9 +36,9 @@ public class TransactionControllerTest {
     @Test
     public void TransactionController_ListAllTransactions_Success() throws IOException {
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionController.ListAllTransactions();
+        List<TransactionDto> resultList = transactionController.listAllTransactions();
 
         assertNotNull(resultList);
         assertEquals(3, resultList.size());
@@ -47,12 +47,12 @@ public class TransactionControllerTest {
     @Test
     public void TransactionController_ListTransactionsByType_Success() throws Exception {
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionController.ListTransactionsByType("Deposit");
+        List<TransactionDto> resultList = transactionController.listTransactionsByType("Deposit");
 
         assertNotNull(resultList);
-        Mockito.verify(transactionService, times(1)).ListTransactionsByType(anyString());
+        Mockito.verify(transactionService, times(1)).listTransactionsByType(anyString());
 
     }
 
@@ -61,9 +61,9 @@ public class TransactionControllerTest {
     public void TransactionController_ListTransactionsByType_EmptyParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionController.ListTransactionsByType(""));
+        assertThrows(Exception.class, () -> transactionController.listTransactionsByType(""));
 
     }
 
@@ -72,9 +72,9 @@ public class TransactionControllerTest {
     public void TransactionController_ListTransactionsByType_NullParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionController.ListTransactionsByType(null));
+        assertThrows(Exception.class, () -> transactionController.listTransactionsByType(null));
 
     }
 
@@ -82,12 +82,12 @@ public class TransactionControllerTest {
     @Test
     public void TransactionController_GetTotalByTransactionType_Success() throws Exception {
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        Double total = transactionController.GetTotalByTransactionType("Deposit");
+        Double total = transactionController.getTotalByTransactionType("Deposit");
 
         assertNotNull(total);
-        Mockito.verify(transactionService, times(1)).GetTotalByTransactionType(anyString());
+        Mockito.verify(transactionService, times(1)).getTotalByTransactionType(anyString());
 
     }
 
@@ -96,9 +96,9 @@ public class TransactionControllerTest {
     public void TransactionController_GetTotalByTransactionType_EmptyParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionController.GetTotalByTransactionType(""));
+        assertThrows(Exception.class, () -> transactionController.getTotalByTransactionType(""));
 
     }
 
@@ -107,9 +107,9 @@ public class TransactionControllerTest {
     public void TransactionController_GetTotalByTransactionType_NullParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionService.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionService.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionController.GetTotalByTransactionType(null));
+        assertThrows(Exception.class, () -> transactionController.getTotalByTransactionType(null));
 
     }
 

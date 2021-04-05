@@ -1,49 +1,20 @@
 package com.cory.transactions.ac;
 
-import com.cory.transactions.ac.contracts.OpenBankTransactionDto;
-import com.cory.transactions.ac.contracts.OpenBankTransactionShellDto;
 import com.cory.transactions.domain.TransactionDto;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * {@inheritDoc}
+ * Provides methods to fetch Transaction data from an external source.
  */
-@Service
-public class TransactionSystem implements ITransactionSystem {
+public interface TransactionSystem {
 
     /**
-     * {@inheritDoc}
+     * Lists all transactions for the external system
+     * @return Non-null List of TransactionDto
+     * @throws IOException when underlying data source throws exception
      */
-    public List<TransactionDto> ListAllTransactions() throws IOException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        try (CloseableHttpClient httpClient = HttpClients.createDefault())  {
-
-            String transactionUrl =
-                    "https://apisandbox.openbankproject.com/obp/v1.2.1/banks/rbs/accounts/savings-kids-john/public/transactions";
-            HttpGet request = new HttpGet(transactionUrl);
-
-            OpenBankTransactionShellDto transactionDto =
-                    httpClient.execute(request,
-                            httpResponse -> mapper.readValue(httpResponse.getEntity().getContent(),
-                                    OpenBankTransactionShellDto.class));
-
-            List<OpenBankTransactionDto> openBankTransactionDtos = transactionDto.getTransactions();
-
-            return openBankTransactionDtos.stream()
-                    .map(OpenBankTransactionDto::ToTransactionDto)
-                    .collect(Collectors.toList());
-        }
-
-    }
+    List<TransactionDto> listAllTransactions() throws IOException;
 
 }

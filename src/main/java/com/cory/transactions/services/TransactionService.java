@@ -1,68 +1,35 @@
 package com.cory.transactions.services;
 
-import com.cory.transactions.ac.ITransactionSystem;
 import com.cory.transactions.domain.TransactionDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * {@inheritDoc}
+ * Service that provides Transaction operations
  */
-@Service
-public class TransactionService implements ITransactionService {
-
-    final ITransactionSystem transactionSystem;
-
-    @Autowired
-    public TransactionService(ITransactionSystem transactionSystem) {
-
-        this.transactionSystem = transactionSystem;
-
-    }
+public interface TransactionService {
 
     /**
-     * {@inheritDoc}
+     * Lists all Transactions
+     * @return List of TransactionDto
+     * @throws IOException when underlying data source is not successful
      */
-    public List<TransactionDto> ListAllTransactions() throws IOException {
-
-        return transactionSystem.ListAllTransactions();
-
-    }
+    List<TransactionDto> listAllTransactions() throws IOException;
 
     /**
-     * {@inheritDoc}
+     * Lists all Transactions of a given Type
+     * @param transactionType Required non-empty String containing the Transaction Type
+     * @return List of TransactionDto
+     * @throws Exception when underlying data source is not successful
      */
-    public List<TransactionDto> ListTransactionsByType(String transactionType) throws Exception {
-
-        Verify.NotEmpty(transactionType, "transactionType");
-
-        List<TransactionDto> transactionDtoList = ListAllTransactions();
-
-        return transactionDtoList.stream()
-                        .filter(tx -> tx.getTransactionType().equals(transactionType))
-                        .collect(Collectors.toList());
-
-    }
+    List<TransactionDto> listTransactionsByType(String transactionType) throws Exception;
 
     /**
-     * {@inheritDoc}
+     * Gets the total summed from all Transactions of a given Transaction Type
+     * @param transactionType Required non-empty String containing the Transaction Type
+     * @return List of TransactionDto
+     * @throws Exception when underlying data source is not successful
      */
-    @Override
-    public Double GetTotalByTransactionType(String transactionType) throws Exception {
-
-        Verify.NotEmpty(transactionType, "transactionType");
-
-        // Would normally consider using MonetaryAmount and checking currency type consistency.
-        // Seems to go beyond the scope of this test.
-
-        List<TransactionDto> transactionDtoList = ListTransactionsByType(transactionType);
-
-        return transactionDtoList.stream().mapToDouble(TransactionDto::getTransactionAmount).sum();
-
-    }
-
+    Double getTotalByTransactionType(String transactionType) throws Exception;
 }

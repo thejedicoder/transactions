@@ -1,8 +1,8 @@
 package com.cory.transactions;
 
-import com.cory.transactions.ac.TransactionSystem;
+import com.cory.transactions.ac.TransactionSystemImpl;
 import com.cory.transactions.domain.TransactionDto;
-import com.cory.transactions.services.TransactionService;
+import com.cory.transactions.services.TransactionServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,15 +18,15 @@ import static org.mockito.Mockito.when;
 public class TransactionServiceTest {
 
     @Mock
-    TransactionSystem transactionSystem;
+    TransactionSystemImpl transactionSystem;
 
-    private TransactionService transactionService;
+    private TransactionServiceImpl transactionService;
 
     @BeforeEach
     public void setup() {
 
-        transactionSystem = mock(TransactionSystem.class);
-        transactionService = new TransactionService(transactionSystem);
+        transactionSystem = mock(TransactionSystemImpl.class);
+        transactionService = new TransactionServiceImpl(transactionSystem);
 
     }
 
@@ -34,9 +34,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListAllTransactions_Success() throws IOException {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionService.ListAllTransactions();
+        List<TransactionDto> resultList = transactionService.listAllTransactions();
 
         assertNotNull(resultList);
         assertEquals(3, resultList.size());
@@ -66,9 +66,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListAllTransactions_EmptyReturn() throws IOException {
 
         List<TransactionDto> dtoList = new ArrayList<>();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionService.ListAllTransactions();
+        List<TransactionDto> resultList = transactionService.listAllTransactions();
 
         assertNotNull(resultList);
         assertEquals(0, resultList.size());
@@ -78,9 +78,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListTransactionsByType_Deposits_Success() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionService.ListTransactionsByType("Deposit");
+        List<TransactionDto> resultList = transactionService.listTransactionsByType("Deposit");
 
         assertNotNull(resultList);
         assertEquals(2, resultList.size());
@@ -110,9 +110,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListTransactionsByType_EmptyResult() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        List<TransactionDto> resultList = transactionService.ListTransactionsByType("InvalidType");
+        List<TransactionDto> resultList = transactionService.listTransactionsByType("InvalidType");
 
         assertNotNull(resultList);
         assertEquals(0, resultList.size());
@@ -142,9 +142,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListTransactionsByType_EmptyParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionService.ListTransactionsByType(""));
+        assertThrows(Exception.class, () -> transactionService.listTransactionsByType(""));
 
     }
 
@@ -152,9 +152,9 @@ public class TransactionServiceTest {
     public void TransactionService_ListTransactionsByType_NullParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionService.ListTransactionsByType(null));
+        assertThrows(Exception.class, () -> transactionService.listTransactionsByType(null));
 
     }
 
@@ -162,9 +162,9 @@ public class TransactionServiceTest {
     public void TransactionService_GetTotalByTransactionType_Success() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        Double resultTotal = transactionService.GetTotalByTransactionType("Deposit");
+        Double resultTotal = transactionService.getTotalByTransactionType("Deposit");
 
         assertNotNull(resultTotal);
         assertEquals(Double.valueOf("4.40"), resultTotal);
@@ -175,9 +175,9 @@ public class TransactionServiceTest {
     public void TransactionService_GetTotalByTransactionType_EmptyParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionService.GetTotalByTransactionType(""));
+        assertThrows(Exception.class, () -> transactionService.getTotalByTransactionType(""));
 
     }
 
@@ -185,9 +185,9 @@ public class TransactionServiceTest {
     public void TransactionService_GetTotalByTransactionType_NullParameter() throws Exception {
 
         List<TransactionDto> dtoList = GenerateTestTransactions();
-        when(transactionSystem.ListAllTransactions()).thenReturn(dtoList);
+        when(transactionSystem.listAllTransactions()).thenReturn(dtoList);
 
-        assertThrows(Exception.class, () -> transactionService.GetTotalByTransactionType(null));
+        assertThrows(Exception.class, () -> transactionService.getTotalByTransactionType(null));
 
     }
 

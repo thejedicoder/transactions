@@ -22,19 +22,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        // @formatter:off
+
         auth.inMemoryAuthentication()
                 .withUser("user1").password(passwordEncoder().encode("user1Pass")).roles("USER")
                 .and()
                 .withUser("user2").password(passwordEncoder().encode("user2Pass")).roles("USER")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("adminPass")).roles("ADMIN");
-        // @formatter:on
+
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        // @formatter:off
+
         http
                 .csrf().disable()
                 .authorizeRequests()
@@ -47,17 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login.html")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/homepage.html", true)
-                //.failureUrl("/login.html?error=true")
                 .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessHandler(logoutSuccessHandler());
-        //.and()
-        //.exceptionHandling().accessDeniedPage("/accessDenied");
-        //.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-        // @formatter:on
+
     }
 
     @Bean

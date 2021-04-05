@@ -1,7 +1,7 @@
 package com.cory.transactions.web;
 
 import com.cory.transactions.domain.TransactionDto;
-import com.cory.transactions.services.ITransactionService;
+import com.cory.transactions.services.TransactionService;
 import com.cory.transactions.services.Verify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    final ITransactionService transactionService;
+    final TransactionService transactionService;
     private static final Logger logger = Logger.getLogger(TransactionController.class.getName());
 
     /**
@@ -29,7 +29,7 @@ public class TransactionController {
      * @param transactionService Required ITransactionService
      */
     @Autowired
-    public TransactionController(ITransactionService transactionService) {
+    public TransactionController(TransactionService transactionService) {
 
         this.transactionService = transactionService;
 
@@ -41,9 +41,9 @@ public class TransactionController {
      * @throws IOException when underlying service is not successful
      */
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TransactionDto> ListAllTransactions() throws IOException {
+    public List<TransactionDto> listAllTransactions() throws IOException {
 
-        return transactionService.ListAllTransactions();
+        return transactionService.listAllTransactions();
 
     }
 
@@ -54,11 +54,11 @@ public class TransactionController {
      * @throws Exception when underlying service is not successful
      */
     @GetMapping(value = "/type/{transactionType}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<TransactionDto> ListTransactionsByType(@PathVariable String transactionType) throws Exception {
+    public List<TransactionDto> listTransactionsByType(@PathVariable String transactionType) throws Exception {
 
         Verify.NotEmpty(transactionType, "transactionType");
 
-        return transactionService.ListTransactionsByType(transactionType);
+        return transactionService.listTransactionsByType(transactionType);
 
     }
 
@@ -69,11 +69,11 @@ public class TransactionController {
      * @throws Exception when underlying service is not successful
      */
     @GetMapping(value = "/type/{transactionType}/total", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Double GetTotalByTransactionType(@PathVariable String transactionType) throws Exception {
+    public Double getTotalByTransactionType(@PathVariable String transactionType) throws Exception {
 
         Verify.NotEmpty(transactionType, "transactionType");
 
-        return transactionService.GetTotalByTransactionType(transactionType);
+        return transactionService.getTotalByTransactionType(transactionType);
 
     }
 
